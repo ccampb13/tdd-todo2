@@ -154,4 +154,15 @@ describe('Task', function(){
     });
   });
 
+  describe('#edit', function(){
+    it('should edit a task', function(){
+      Task.findById(task1._id.toString(), function(t){
+        t.edit({title:'homework', due:'06/25/2014', color:'red'});
+        expect(t.title).to.equal('homework');
+        expect(moment(t.due).format('MM/DD/YYYY')).to.equal('06/25/2014');
+        expect(t.color).to.equal('red');
+      });
+    });
+  });
+
 });
